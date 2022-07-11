@@ -3,7 +3,7 @@
 body {
   margin: 0;
   font-family: "Franklin Gothic Medium","Arial Narrow",Arial,sans-serif;
-    color: #5a022e;
+    color: hwb(330 1% 64%);
     -webkit-font-smoothing: antialiased;
 }
 
