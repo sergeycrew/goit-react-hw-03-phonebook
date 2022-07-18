@@ -17,19 +17,23 @@ export class App extends Component {
   };
 
   formSubmitHandler = data => {
+    const inputDataName = data.name.toLowerCase();
+    const inputNumber = data.number;
     if (
       this.state.contacts.some(
-        ({ name }) => name.toLowerCase() === data.name.toLowerCase()
+        ({ name }) => name.toLowerCase() === inputDataName
       )
     ) {
       alert(`${data.name} is already in your phonebook, bro!`);
     } else if (
-      this.state.contacts.find(({ number }) => number === data.number)
+      this.state.contacts.find(({ number }) => number === inputNumber)
     ) {
       alert(`${data.name} is already in your phonebook, bro!`);
-    } else if (!/\d{3}[-]\d{2}[-]\d{2}/g.test(data.number)) {
-      alert(`Enter valid number please`);
-    } else {
+    }
+    // else if (!/\d{3}[-]\d{2}[-]\d{2}/g.test(data.number)) {
+    //   alert(`Enter valid number please`);
+    // }
+    else {
       data.id = nanoid();
       this.setState(({ contacts }) => ({
         contacts: [data, ...contacts],
