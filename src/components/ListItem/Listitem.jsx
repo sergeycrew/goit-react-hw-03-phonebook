@@ -6,7 +6,7 @@ export const ListItem = ({ id, name, number, onDeleteContact }) => {
   return (
     <ContactItem key={id}>
       {name} : {number}
-      <Button type="button" onClick={() => onDeleteContact(id)}>
+      <Button type="button" onClick={onDeleteContact}>
         <FaRegTimesCircle size="20px" />
       </Button>
     </ContactItem>

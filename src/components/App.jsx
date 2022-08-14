@@ -16,6 +16,20 @@ export class App extends Component {
     filter: '',
   };
 
+  componentDidMount(){
+  const contacts = localStorage.getItem('contacts');
+  const parsedContacts = JSON.parse(contacts);
+  if(parsedContacts) {
+    this.setState({contacts: parsedContacts});
+  }
+  }
+
+componentDidUpdate(prevProps, prevState) {
+if (this.state.contacts !== prevState.contacts) {
+  localStorage.setItem('contacts', JSON.stringify(this.state.contacts))
+}
+}
+
   formSubmitHandler = data => {
     const inputDataName = data.name.toLowerCase();
     const inputNumber = data.number;
@@ -30,15 +44,12 @@ export class App extends Component {
     ) {
       alert(`${data.name} is already in your phonebook, bro!`);
     }
-    // else if (!/\d{3}[-]\d{2}[-]\d{2}/g.test(data.number)) {
-    //   alert(`Enter valid number please`);
-    // }
     else {
       data.id = nanoid();
       this.setState(({ contacts }) => ({
         contacts: [data, ...contacts],
       }));
-      console.log(this.contacts);
+      console.log(this.contacts);  
     }
   };
 
